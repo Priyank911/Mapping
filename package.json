@@ -1,0 +1,21 @@
+{
+  "name": "mapping-extension",
+  "version": "1.0.0",
+  "description": "Privacy-first browser extension for knowledge mapping with Groq AI and Notion",
+  "private": true,
+  "scripts": {
+    "build": "echo 'No build step required for vanilla JS extension'",
+    "lint": "echo 'Add ESLint configuration for linting'",
+    "package": "zip -r mapping-extension.zip . -x '*.git*' -x 'node_modules/*' -x '*.md'"
+  },
+  "keywords": [
+    "browser-extension",
+    "chrome-extension",
+    "knowledge-management",
+    "notion",
+    "groq",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT"
+}

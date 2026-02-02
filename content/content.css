@@ -1,0 +1,106 @@
+/* Mapping Extension - Content Script Styles */
+
+#mapping-notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+.mapping-notification {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  max-width: 350px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+}
+
+.mapping-notification-show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mapping-notification-hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.mapping-notification-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.mapping-notification-message {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #202124;
+  word-wrap: break-word;
+}
+
+/* Type-specific styles */
+.mapping-notification-success {
+  border-left: 4px solid #34a853;
+}
+
+.mapping-notification-success .mapping-notification-icon {
+  color: #34a853;
+}
+
+.mapping-notification-error {
+  border-left: 4px solid #ea4335;
+}
+
+.mapping-notification-error .mapping-notification-icon {
+  color: #ea4335;
+}
+
+.mapping-notification-info {
+  border-left: 4px solid #4a4a4a;
+}
+
+.mapping-notification-info .mapping-notification-icon {
+  color: #4a4a4a;
+}
+
+/* Processing animation */
+.mapping-notification-info .mapping-notification-icon svg {
+  animation: mapping-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes mapping-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .mapping-notification {
+    background: #292929;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .mapping-notification-message {
+    color: #e8eaed;
+  }
+}

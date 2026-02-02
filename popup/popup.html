@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400, height=600">
+  <title>Mapping Extension</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <img src="../icons/logo.png" alt="Mapping" class="logo-icon">
+        <span>Mapping</span>
+      </div>
+      <button id="settingsBtn" class="icon-btn" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Onboarding View -->
+      <div id="onboardingView" class="view">
+        <div class="onboarding-steps">
+          <!-- Welcome Logo -->
+          <div class="onboarding-logo">
+            <img src="../icons/logo.png" alt="Mapping">
+          </div>
+          
+          <!-- Step indicators -->
+          <div class="step-indicators">
+            <div class="step-dot active" data-step="1"></div>
+            <div class="step-dot" data-step="2"></div>
+            <div class="step-dot" data-step="3"></div>
+          </div>
+
+          <!-- Step 1: Groq API -->
+          <div id="step1" class="step active">
+            <h2>Groq API Key</h2>
+            <p class="step-desc">Enter your Groq API key. It will be stored encrypted locally.</p>
+            <div class="input-group">
+              <label for="groqApiKey">API Key</label>
+              <div class="input-wrapper">
+                <input type="password" id="groqApiKey" placeholder="gsk_...">
+                <button class="toggle-visibility" data-target="groqApiKey">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+              <span class="validation-msg" id="groqValidation"></span>
+            </div>
+            <button class="btn btn-primary" id="step1Next">Continue</button>
+          </div>
+
+          <!-- Step 2: Local Identity -->
+          <div id="step2" class="step">
+            <h2>Local Identity</h2>
+            <p class="step-desc">Create a local profile to secure your data.</p>
+            <div class="input-group">
+              <label for="userName">Your Name</label>
+              <input type="text" id="userName" placeholder="Enter your name">
+            </div>
+            <div class="input-group">
+              <label for="userPassword">Password</label>
+              <div class="input-wrapper">
+                <input type="password" id="userPassword" placeholder="Create a password">
+                <button class="toggle-visibility" data-target="userPassword">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <div class="input-wrapper">
+                <input type="password" id="confirmPassword" placeholder="Confirm password">
+                <button class="toggle-visibility" data-target="confirmPassword">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+              <span class="validation-msg" id="passwordValidation"></span>
+            </div>
+            <div class="btn-group">
+              <button class="btn btn-secondary" id="step2Back">Back</button>
+              <button class="btn btn-primary" id="step2Next">Continue</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Notion Connector -->
+          <div id="step3" class="step">
+            <h2>Notion Connector</h2>
+            <p class="step-desc">Connect to your Notion workspace.</p>
+            <div class="input-group">
+              <label for="notionToken">Integration Token</label>
+              <div class="input-wrapper">
+                <input type="password" id="notionToken" placeholder="secret_...">
+                <button class="toggle-visibility" data-target="notionToken">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="notionDatabaseId">Database ID</label>
+              <input type="text" id="notionDatabaseId" placeholder="Enter database ID">
+              <span class="help-text">Found in your Notion database URL</span>
+            </div>
+            <span class="validation-msg" id="notionValidation"></span>
+            <div class="btn-group">
+              <button class="btn btn-secondary" id="step3Back">Back</button>
+              <button class="btn btn-primary" id="step3Complete">Complete Setup</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lock Screen View -->
+      <div id="lockView" class="view hidden">
+        <div class="lock-content">
+          <div class="lock-icon">
+            <img src="../icons/logo.png" alt="Mapping" class="lock-logo">
+          </div>
+          <h2>Welcome back, <span id="lockUserName"></span></h2>
+          <div class="input-group">
+            <label for="unlockPassword">Password</label>
+            <div class="input-wrapper">
+              <input type="password" id="unlockPassword" placeholder="Enter password">
+              <button class="toggle-visibility" data-target="unlockPassword">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+            <span class="validation-msg" id="unlockValidation"></span>
+          </div>
+          <button class="btn btn-primary" id="unlockBtn">Unlock</button>
+        </div>
+      </div>
+
+      <!-- Dashboard View -->
+      <div id="dashboardView" class="view hidden">
+        <!-- Session Panel -->
+        <div class="session-panel">
+          <div class="session-header">
+            <h3>Active Session</h3>
+            <button class="btn btn-small" id="newSessionBtn">+ New</button>
+          </div>
+          
+          <div id="activeSession" class="active-session">
+            <div class="session-info">
+              <span class="session-name" id="currentSessionName">No active session</span>
+              <span class="session-count" id="sessionNoteCount">0 notes</span>
+            </div>
+          </div>
+
+          <div class="recent-sessions">
+            <h4>Recent Sessions</h4>
+            <div id="sessionList" class="session-list">
+              <!-- Sessions will be populated here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-panel">
+          <div class="stat-item">
+            <span class="stat-value" id="totalNotes">0</span>
+            <span class="stat-label">Total Notes</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="totalSessions">0</span>
+            <span class="stat-label">Sessions</span>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="status-panel">
+          <div class="status-item">
+            <span class="status-dot connected"></span>
+            <span>Notion Connected</span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot connected"></span>
+            <span>Groq Ready</span>
+          </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+          <p>Select any text on a webpage, right-click, and choose <strong>"Store to Mapping"</strong> to capture it.</p>
+        </div>
+      </div>
+
+      <!-- Settings View -->
+      <div id="settingsView" class="view hidden">
+        <div class="settings-header">
+          <button class="icon-btn" id="backFromSettings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <h2>Settings</h2>
+        </div>
+
+        <div class="settings-content">
+          <div class="settings-section">
+            <h3>Credentials</h3>
+            <button class="btn btn-secondary btn-full" id="updateGroqKey">Update Groq API Key</button>
+            <button class="btn btn-secondary btn-full" id="updateNotion">Update Notion Settings</button>
+          </div>
+
+          <div class="settings-section">
+            <h3>Security</h3>
+            <button class="btn btn-secondary btn-full" id="changePassword">Change Password</button>
+            <button class="btn btn-secondary btn-full" id="lockExtension">Lock Extension</button>
+          </div>
+
+          <div class="settings-section">
+            <h3>Data</h3>
+            <button class="btn btn-danger btn-full" id="clearAllData">Clear All Data</button>
+          </div>
+
+          <div class="settings-section">
+            <p class="version-info">Mapping Extension v1.0.0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- New Session Modal -->
+      <div id="newSessionModal" class="modal hidden">
+        <div class="modal-content">
+          <h3>Create New Session</h3>
+          <div class="input-group">
+            <label for="newSessionName">Session Name</label>
+            <input type="text" id="newSessionName" placeholder="e.g., Research Project">
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-secondary" id="cancelNewSession">Cancel</button>
+            <button class="btn btn-primary" id="createSession">Create</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+      <span id="toastMessage"></span>
+    </div>
+  </div>
+
+  <script src="../utils/crypto.js"></script>
+  <script src="../utils/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
