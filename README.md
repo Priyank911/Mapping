@@ -27,7 +27,7 @@
 
 <table>
   <tr>
-    <td><img src="docs/screenshots/onboarding.png" alt="Onboarding Screen" width="100%"/></td>
+    <td><img src="docs/screenshots/onboard.png" alt="Onboarding Screen" width="100%"/></td>
     <td><img src="docs/screenshots/dashboard.png" alt="Dashboard" width="100%"/></td>
   </tr>
   <tr>
@@ -38,8 +38,8 @@
 
 <table>
   <tr>
-    <td><img src="docs/screenshots/context-menu.png" alt="Context Menu" width="100%"/></td>
-    <td><img src="docs/screenshots/notion-page.png" alt="Notion Page" width="100%"/></td>
+    <td><img src="docs/screenshots/inspect.png" alt="Context Menu" width="100%"/></td>
+    <td><img src="docs/screenshots/notion.png" alt="Notion Page" width="100%"/></td>
   </tr>
   <tr>
     <td align="center"><em>Right-Click Context Menu</em></td>
